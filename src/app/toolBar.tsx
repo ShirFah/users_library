@@ -19,6 +19,7 @@ const CustomToolbar: React.FC<CustomToolbarProps> = ({ onAddUserClick }) => {
         borderRadius: "16px",
         boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
         marginBottom: "20px",
+        marginTop: "10px",
       }}
     >
       <div

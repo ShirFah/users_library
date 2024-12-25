@@ -17,7 +17,6 @@ import columns from "./userData";
 import AddUser from "./addUser";
 import CustomToolbar from "./toolBar";
 import ErrorMessage from "./errorMessage";
-import { log } from "node:console";
 
 export default function Home() {
   const [data, setData] = useState<User[]>([]);
@@ -38,7 +37,7 @@ export default function Home() {
     const getData = async () => {
       try {
         const userData = await fetchUserData();
-        const initialRows = userData.map((user, index) => ({
+        const initialRows = userData.map((user: any, index: any) => ({
           id: index + 1,
           name: user.name,
           email: user.email,
@@ -107,7 +106,7 @@ export default function Home() {
             picture: editedUser.picture,
           };
         }
-        return row; // Keep other rows unchanged
+        return row;
       });
     });
   };
@@ -119,7 +118,7 @@ export default function Home() {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          height: "100vh", // Full viewport height
+          height: "100vh",
         }}
       >
         <CircularProgress />
@@ -128,10 +127,7 @@ export default function Home() {
   }
   if (error) {
     return (
-      <ErrorMessage
-        message={error}
-        onRetry={() => window.location.reload()} // You can define a custom retry logic here
-      />
+      <ErrorMessage message={error} onRetry={() => window.location.reload()} />
     );
   }
 
@@ -143,7 +139,7 @@ export default function Home() {
         onAddUser={handleAddUser}
         onEditUser={handleEditUser}
         user={editingUser}
-        rows={rows} // Pass the current rows to the AddUser component for editing
+        rows={rows}
       />
 
       <Grid
